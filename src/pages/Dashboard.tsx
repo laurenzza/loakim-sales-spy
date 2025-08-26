@@ -2,6 +2,7 @@ import { MetricCard } from "@/components/ui/metric-card"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { 
   TrendingUp, 
   TrendingDown, 
@@ -13,10 +14,45 @@ import {
   BarChart3,
   Download,
   RefreshCw,
-  PlayCircle
+  PlayCircle,
+  ShoppingCart
 } from "lucide-react"
 
 export default function Dashboard() {
+  // Sample data based on your dataset structure
+  const topProducts = [
+    {
+      name: "AS DINAMO KIPAS ANGIN MODEL COSMOS,MIYAKO,UMUM-RRT.",
+      quantity: 2850,
+      sales: "Rp 485,200",
+      percentage: "18.2%"
+    },
+    {
+      name: "KAPASITOR POMPA AIR 14 UF 450VAC CAPASITOR BULET",
+      quantity: 1245,
+      sales: "Rp 312,500",
+      percentage: "11.7%"
+    },
+    {
+      name: "bushing boshing bos bearing kipas angin Rrt/umum",
+      quantity: 980,
+      sales: "Rp 215,600",
+      percentage: "8.1%"
+    },
+    {
+      name: "OTOMATIS PM5 PRESSURE SWITCH JETPUMP POMPA AIR",
+      quantity: 875,
+      sales: "Rp 192,500",
+      percentage: "7.2%"
+    },
+    {
+      name: "Sepasang Kopel Konektor Blender Miyako Gigi Gear",
+      quantity: 650,
+      sales: "Rp 156,000",
+      percentage: "5.8%"
+    }
+  ];
+
   return (
     <div className="space-y-6">
       {/* Page Header */}
@@ -157,6 +193,58 @@ export default function Dashboard() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Top Selling Products */}
+      <Card className="bg-gradient-to-br from-card to-card/50 border-border shadow-card">
+        <CardHeader>
+          <CardTitle className="flex items-center space-x-2">
+            <ShoppingCart className="w-5 h-5 text-primary" />
+            <span>Produk Terlaris</span>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Nama Produk</TableHead>
+                <TableHead className="text-center">Jumlah Terjual</TableHead>
+                <TableHead className="text-right">Total Penjualan</TableHead>
+                <TableHead className="text-right">Persentase</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {topProducts.map((product, index) => (
+                <TableRow key={index}>
+                  <TableCell className="font-medium max-w-md">
+                    <div className="truncate" title={product.name}>
+                      {product.name}
+                    </div>
+                  </TableCell>
+                  <TableCell className="text-center">
+                    <Badge variant="secondary" className="bg-info/20 text-info">
+                      {product.quantity.toLocaleString()} unit
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="text-right font-semibold">
+                    {product.sales}
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <Badge variant="outline" className="border-success/30 text-success">
+                      {product.percentage}
+                    </Badge>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          <div className="mt-4 pt-4 border-t border-border">
+            <Button variant="outline" className="w-full md:w-auto">
+              <Package className="w-4 h-4 mr-2" />
+              Lihat Semua Produk
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Recent Predictions */}
       <Card className="bg-gradient-to-br from-card to-card/50 border-border shadow-card">
