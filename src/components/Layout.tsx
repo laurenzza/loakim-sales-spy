@@ -3,6 +3,7 @@ import { AppSidebar } from "@/components/AppSidebar"
 import { Bell, User, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { ThemeToggle } from "@/components/ThemeToggle"
 
 interface LayoutProps {
   children: React.ReactNode
@@ -30,6 +31,7 @@ export function Layout({ children }: LayoutProps) {
               </div>
               
               <div className="flex items-center space-x-4">
+                <ThemeToggle />
                 <Button variant="outline" size="icon" className="relative">
                   <Bell className="w-4 h-4" />
                   <span className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full"></span>
